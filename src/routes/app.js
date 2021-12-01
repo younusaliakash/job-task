@@ -1,8 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import Routes from "./routes";
-import Sidebar from "../components/sidebar"
-
+import Sidebar from "../components/sidebar";
+import Header from "../components/header";
 const App = () => {
   return (
     <>
@@ -16,9 +16,10 @@ const App = () => {
       </Helmet>
       <div className="body_content">
         <div className="siderbar_content">
-            <Sidebar/>
+          <Sidebar />
         </div>
         <div className="main_content">
+          <Header />
           <Routes />
         </div>
       </div>

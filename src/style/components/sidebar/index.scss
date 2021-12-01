@@ -9,6 +9,7 @@
     background: $bg-primary;
     z-index: 999;
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
     &:hover {
       width: 250px;
       .sidebar_wrapper {
