@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import Routes from "./routes";
+import Sidebar from "../components/sidebar"
 
 const App = () => {
   return (
@@ -13,7 +14,14 @@ const App = () => {
         />
         <title>Oktio - Super Buyer & Supplier</title>
       </Helmet>
-      <Routes/>
+      <div className="body_content">
+        <div className="siderbar_content">
+            <Sidebar/>
+        </div>
+        <div className="main_content">
+          <Routes />
+        </div>
+      </div>
     </>
   );
 };
