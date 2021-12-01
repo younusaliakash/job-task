@@ -1,0 +1,53 @@
+@mixin button {
+  border: none;
+  outline: none;
+  border: 1px solid #8080803b;
+  padding: 5px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page_heading {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: space-between;
+  .right_menu {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: space-between;
+    .filter {
+      margin-right: 15px;
+      button {
+        @include button;
+        background: $bg-light;
+        color: $text-primary;
+        svg {
+          font-size: 20px;
+          margin-right: 10px;
+        }
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+    .add_item {
+      button {
+        @include button;
+        background: $bg-primary;
+        color: $text-light;
+        padding: 5px 10px !important;
+        svg {
+          font-size: 18px;
+        }
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

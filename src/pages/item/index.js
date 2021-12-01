@@ -1,11 +1,116 @@
-import React from 'react'
+import React from "react";
+import { BsFilter, BsThreeDots } from "react-icons/bs";
+import { AiOutlinePlus } from "react-icons/ai";
+import { MdArrowDropDown } from "react-icons/md";
+import { FiSearch } from "react-icons/fi";
+import data from "../../helper/fakadata";
 
 const Index = () => {
-    return (
-        <div>
-            <h3>This is Item</h3>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  return (
+    <div className="items_page">
+      <div className="content">
+        <div className="page_heading">
+          <div className="title">
+            <h4>Items</h4>
+          </div>
+          <div className="right_menu">
+            <div className="filter">
+              <button type="button">
+                <BsFilter />
+                <span>Filter</span>
+              </button>
+            </div>
+            <div className="add_item">
+              <button type="button">
+                <AiOutlinePlus style={{ marginRight: "10px" }} />
+                <span>Add Item</span>
+                <MdArrowDropDown style={{ marginLeft: "15px" }} />
+              </button>
+            </div>
+          </div>
         </div>
-    )
-}
+        <div className="data_container">
+          <div className="container_heading">
+            <div className="search_box">
+              <form onSubmit={handleSubmit}>
+                <div className="form">
+                  <input
+                    type="text"
+                    name="search"
+                    placeholder="Search for anything..."
+                    className="search"
+                    autoComplete="off"
+                  />
+                  <span>
+                    <FiSearch />
+                  </span>
+                </div>
+              </form>
+            </div>
+            <div className="show_entries">
+              <select name="entries">
+                <option value="Show 10 Entries">Show 10 Entries</option>
+                <option value="Show 20 Entries">Show 20 Entries</option>
+                <option value="Show 30 Entries">Show 30 Entries</option>
+                <option value="Show 40 Entries">Show 40 Entries</option>
+                <option value="Show 50 Entries">Show 50 Entries</option>
+              </select>
+            </div>
+          </div>
+          <div className="table_data">
+            <table>
+              <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>Unit</th>
+                <th>Status</th>
+              </tr>
+              <tbody>
+                {data.map((data, index) => (
+                  <tr>
+                    <td>{data.userId}</td>
+                    <td>
+                      <img
+                        src={data.image_upload}
+                        style={{ width: "35px", height: "35px", borderRadius: "8px" }}
+                        alt=""
+                      />
+                    </td>
+                    <td>{data.item_name}</td>
+                    <td>{data.category}</td>
+                    <td>{data.manufacturer}</td>
+                    <td>{data.model}</td>
+                    <td>{data.unit}</td>
+                    <td>
+                      <div className="status_field">
+                        <div className="status_dropdown">
+                          <select name="status" value={data.status}>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                            <option value="pending">Pending</option>
+                          </select>
+                        </div>
+                        <div className="action">
+                          <BsThreeDots fontSize={18} />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Index
+export default Index;
