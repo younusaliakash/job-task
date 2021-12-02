@@ -4,12 +4,12 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { MdArrowDropDown } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
 import { data } from "../../helper/fakadata";
+import CustomModal from "../../components/modal/modal";
 
 const Index = () => {
   const [show, setShow] = useState(false);
   const handleShow = (e) => {
     setShow(!show);
-    console.log(e);
   };
   const [toggle, setToggle] = useState(false);
   const handleToggle = () => {
@@ -21,6 +21,15 @@ const Index = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
   };
   return (
     <>
@@ -47,7 +56,7 @@ const Index = () => {
                   className="add_dropdown"
                   style={{ display: `${toggle ? "block" : "none"}` }}
                 >
-                  <li>New Item</li>
+                  <li onClick={openModal}>New Item</li>
                   <li>Import Item</li>
                 </div>
               </div>
@@ -159,6 +168,141 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <CustomModal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        width="600px"
+      >
+        <div className="modal_heading">
+          <h3>Add Item</h3>
+          <span onClick={closeModal}>X</span>
+        </div>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <div className="row">
+            <div className="form_group">
+              <label htmlFor="itemname">Item Name</label>
+              <br />
+              <input
+                type="text"
+                name="documents"
+                id="name"
+                placeholder="Type item name"
+                className="input"
+              />
+            </div>
+            <div className="form_group">
+              <label htmlFor="manufacture">Manufacturer</label>
+              <br />
+              <input
+                type="text"
+                name="documents"
+                id="name"
+                placeholder="Manufacture name"
+                className="input"
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form_group">
+              <label htmlFor="notes">Notes</label>
+              <br />
+              <textarea
+                name="documents"
+                id="name"
+                cols="30"
+                rows="6"
+                placeholder="Write notes..."
+                className="input"
+              ></textarea>
+            </div>
+            <div className="form_group">
+              <label htmlFor="unit">Unit</label>
+              <br />
+              <input
+                type="text"
+                name="documents"
+                id="name"
+                placeholder="Type units"
+                className="input"
+              />
+              <br />
+              <br />
+              <label htmlFor="status">Status</label>
+              <br />
+              <select
+                name="documents"
+                id="name"
+                value="Active"
+                className="input"
+              >
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div className="row">
+            <div className="form_group">
+              <label htmlFor="category">Category</label>
+              <br />
+              <input
+                type="text"
+                name="documents"
+                id="name"
+                placeholder="Type category"
+                className="input"
+              />
+            </div>
+            <div className="form_group">
+              <label htmlFor="model">Model</label>
+              <br />
+              <input
+                type="text"
+                name="documents"
+                id="name"
+                placeholder="Type model"
+                className="input"
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form_group">
+              <label htmlFor="groupname">Group Name</label>
+              <br />
+              <input
+                type="text"
+                name="documents"
+                id="name"
+                placeholder="Type group name"
+                className="input"
+              />
+            </div>
+            <div className="form_group">
+              <label htmlFor="tags">Tags</label>
+              <br />
+              <input
+                type="text"
+                name="documents"
+                id="name"
+                placeholder="Type tags"
+                className="input"
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="cancel_button">
+              <button type="button" onClick={closeModal}>
+                Cancel
+              </button>
+            </div>
+            <div className="save_button">
+              <button type="button">Save as draft</button>
+              <button type="button" className="publish">
+                Publish
+              </button>
+            </div>
+          </div>
+        </form>
+      </CustomModal>
     </>
   );
 };
