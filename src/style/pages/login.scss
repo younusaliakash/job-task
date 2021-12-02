@@ -8,17 +8,22 @@
   cursor: pointer;
 }
 .login_wrapper {
-  width: 600px;
+  width: 30%;
   height: auto;
   max-width: 100%;
   position: relative;
+  margin: auto;
+  background: $bg-light;
+  padding: 30px;
+  border-radius: 18px;
+  margin-top: 20px;
   .login_heading {
     display: flex;
     display: -webkit-flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    span {
-      cursor: pointer;
+    h3 {
+      text-transform: capitalize;
       font-weight: 700;
     }
   }
