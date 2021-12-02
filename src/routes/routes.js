@@ -7,7 +7,7 @@ const Routes = () => {
     <>
       <Router>
           <Item path="/items" />
-          <Company path="/company" />
+          <Company path="/suppliers" />
       </Router>
     </>
   );

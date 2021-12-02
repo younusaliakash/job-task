@@ -3,7 +3,7 @@ import { BsFilter, BsThreeDots } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdArrowDropDown } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
-import data from "../../helper/fakadata";
+import { data } from "../../helper/fakadata";
 
 const Index = () => {
   const [show, setShow] = useState(false);
@@ -60,7 +60,7 @@ const Index = () => {
                   <input
                     type="text"
                     name="search"
-                    placeholder="Search for anything..."
+                    placeholder="Search using keyword or tags"
                     className="search"
                     autoComplete="off"
                   />
