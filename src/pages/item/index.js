@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFilter, BsThreeDots } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdArrowDropDown } from "react-icons/md";
@@ -6,6 +6,19 @@ import { FiSearch } from "react-icons/fi";
 import data from "../../helper/fakadata";
 
 const Index = () => {
+  const [show, setShow] = useState(false);
+  const handleShow = (e) => {
+    setShow(!show);
+    console.log(e);
+  };
+  const [toggle, setToggle] = useState(false);
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
+  const [action, setAction] = useState(false);
+  const handleAction = () => {
+    setAction(!action);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -24,11 +37,18 @@ const Index = () => {
               </button>
             </div>
             <div className="add_item">
-              <button type="button">
+              <button type="button" onClick={() => handleToggle(!toggle)}>
                 <AiOutlinePlus style={{ marginRight: "10px" }} />
                 <span>Add Item</span>
                 <MdArrowDropDown style={{ marginLeft: "15px" }} />
               </button>
+              <div
+                className="add_dropdown"
+                style={{ display: `${toggle ? "block" : "none"}` }}
+              >
+                <li>New Item</li>
+                <li>Import Item</li>
+              </div>
             </div>
           </div>
         </div>
@@ -74,16 +94,20 @@ const Index = () => {
               </tr>
               <tbody>
                 {data.map((data, index) => (
-                  <tr>
+                  <tr key={index + 1}>
                     <td>{data.userId}</td>
                     <td>
                       <img
                         src={data.image_upload}
-                        style={{ width: "35px", height: "35px", borderRadius: "8px" }}
+                        style={{
+                          width: "35px",
+                          height: "35px",
+                          borderRadius: "8px",
+                        }}
                         alt=""
                       />
                     </td>
-                    <td>{data.item_name}</td>
+                    <td style={{ color: "#2170ff" }}>{data.item_name}</td>
                     <td>{data.category}</td>
                     <td>{data.manufacturer}</td>
                     <td>{data.model}</td>
@@ -91,14 +115,34 @@ const Index = () => {
                     <td>
                       <div className="status_field">
                         <div className="status_dropdown">
-                          <select name="status" value={data.status}>
-                            <option value="active">Active</option>
-                            <option value="completed">Completed</option>
-                            <option value="pending">Pending</option>
-                          </select>
+                          <div
+                            className="status"
+                            onClick={() => handleShow(data.userId)}
+                          >
+                            <span>{data.status}</span>{" "}
+                            <MdArrowDropDown style={{ marginRight: "10px" }} />
+                          </div>
+                          <div
+                            className="status_panel"
+                            style={{ display: `${show ? "block" : "none"}` }}
+                          >
+                            <li>Active</li>
+                            <li>Inactive</li>
+                          </div>
                         </div>
-                        <div className="action">
+                        <div
+                          className="action"
+                          onClick={() => handleAction(!action)}
+                        >
                           <BsThreeDots fontSize={18} />
+                          <div
+                            className="action_panel"
+                            style={{ display: `${action ? "block" : "none"}` }}
+                          >
+                            <li>Edit Item</li>
+                            <li>view Attachments</li>
+                            <li>Delete</li>
+                          </div>
                         </div>
                       </div>
                     </td>
